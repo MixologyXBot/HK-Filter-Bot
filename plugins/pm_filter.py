@@ -27,7 +27,7 @@ async def pm_search(client, message):
     ]]
     reply_markup=InlineKeyboardMarkup(btn)
     if await db.get_pm_search_status(bot_id):
-        s = await message.reply(f"<b><i>⚠️ `{message.text}` searching...</i></b>")
+        s = await message.reply(f"<b><i>⚠️ `{message.text}` searching...</i></b>", quote=True)
         if 'hindi' in message.text.lower() or 'tamil' in message.text.lower() or 'telugu' in message.text.lower() or 'malayalam' in message.text.lower() or 'kannada' in message.text.lower() or 'english' in message.text.lower() or 'gujarati' in message.text.lower(): 
             return await auto_filter(client, message, s)
         await auto_filter(client, message, s)
@@ -1050,7 +1050,7 @@ async def auto_filter(client, msg, s, spoll=False):
                 except:
                     pass
     else:
-        k = await s.edit_text(cap + files_link + del_msg, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True, parse_mode=enums.ParseMode.HTML, quote=True)
+        k = await s.edit_text(cap + files_link + del_msg, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True, parse_mode=enums.ParseMode.HTML)
         if settings["auto_delete"]:
             await asyncio.sleep(DELETE_TIME)
             await k.delete()
